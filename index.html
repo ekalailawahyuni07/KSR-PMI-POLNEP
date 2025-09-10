@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KSR PMI UNIT POLNEP</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth; 
+    }
+
+    /* Navbar Atas (logo) */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background: white;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .navbar .right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-ksr {
+      height: 50px;
+    }
+    .logo-pmi {
+      height: 70px;
+    }
+    .logo-polnep {
+      height: 50px;
+    }
+
+    /* Menu */
+    .menu {
+      display: flex;
+      justify-content: center;
+      background: #b91c1c; 
+      padding: 10px;
+      position: sticky;
+      top: 80px; 
+      z-index: 1000;
+    }
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    .menu a:hover {
+      text-decoration: underline;
+    }
+
+    /* Slideshow (Beranda) */
+    .slideshow-container {
+      width: 100%;
+      height: 100vh; 
+      overflow: hidden;
+    }
+
+    .slide {
+      display: block;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* biar tidak gepeng */
+    }
+
+    .fade {
+      animation-name: fade;
+      animation-duration: 1.5s;
+    }
+
+    @keyframes fade {
+      from {opacity: 0.4}
+      to {opacity: 1}
+    }
+
+    /* Section umum */
+    section {
+      min-height: 100vh;
+      padding: 80px 60px;
+    }
+
+    #about {
+    background: #fff5f5;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-container {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    width: 90%;
+    max-width: 1200px;
+    background: #fffaf9;
+  }
+
+  .about-shape {
+    background: #b91c1c;
+    clip-path: polygon(0 0, 70% 0, 60% 100%, 0% 100%);
+    /* bentuk melengkung kiri */
+  }
+
+  .about-text {
+    padding: 40px;
+    text-align: center;
+  }
+
+  .about-text h1 {
+    color: #b91c1c;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .about-text p {
+    color: #800000;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+    #visi-misi {
+    background: #b91c1c;
+    padding: 60px 20px;
+    color: #fff;
+  }
+
+  .visi-misi-container {
+    max-width: 1000px;
+    margin: auto;
+    background: #fff5f5;
+    border-radius: 15px;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .visi-misi-container h1 {
+    color: #b91c1c;
+    margin-bottom: 30px;
+    font-size: 28px;
+  }
+
+  .visi h2, .misi h2 {
+    color: #b91c1c;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .visi p {
+    color: #800000;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+
+  .misi ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .misi ul li {
+    margin: 10px 0;
+    font-size: 15px;
+    color: #800000;
+  }
+
+  #struktur {
+    background: #fff;
+    display: flex;
+    align-items: flex-start;
+    padding: 60px 40px;
+    gap: 20px;
+  }
+
+  .struktur-header h1 {
+  color: #fff;   /* Paksa putih */
+  font-size: 24px;
+  line-height: 1.5;
+  margin: 0;
+  }
+  .struktur-header {
+    background: #b91c1c;
+    color: white;
+    padding: 200px 20px;
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 10px;
+    width: 250px;
+    text-align: center;
+    line-height: 1.4;
+    flex-shrink: 0;
+  }
+
+  .struktur-container {
+    position: relative;
+    flex-grow: 1;
+  }
+
+  .struktur-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: brightness(80%);
+  }
+
+  .card h2 {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .card p {
+    position: absolute;
+    bottom: 15px;
+    left: 10px;
+    right: 10px;
+    font-size: 14px;
+  }
+
+  /* Slideshow */
+  .struktur-slide {display: none;}
+  .fade {animation: fadeEffect 1s;}
+  @keyframes fadeEffect {from{opacity:0.4} to{opacity:1}}
+
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.5);
+    user-select: none;
+  }
+  .next {right: -40px;}
+  .prev {left: -40px;}
+
+#kegiatan {
+  background: #fdfdfd;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+#kegiatan h1 {
+  font-size: 26px;
+  color: #b91c1c;
+  margin-bottom: 30px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.gallery-item {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.gallery-item:hover {
+  transform: scale(1.03);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.gallery-item p {
+  margin: 10px 0;
+  font-size: 14px;
+  font-weight: bold;
+  color: #800000;
+}
+
+  #contact {
+    background: #b91c1c;
+    padding: 60px 20px;
+    color: white;
+    text-align: center;
+  }
+
+  #contact h1 {
+    font-size: 26px;
+    margin-bottom: 30px;
+    font-weight: bold;
+  }
+
+  .contact-container {
+    max-width: 700px;
+    margin: auto;
+  }
+
+  .contact-info, .contact-social {
+    text-align: left;
+    margin: 20px auto;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .contact-info p, .contact-social p {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+  }
+
+  .contact-info img.icon, .contact-social img.icon {
+    width: 22px;   /* atur ukuran icon */
+    height: 22px;
+    margin-right: 10px;
+  }
+
+  .contact-social p:first-child {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  /* ===== Responsif untuk Tablet dan HP ===== */
+
+/* Tablet (max 992px) */
+@media (max-width: 992px) {
+  .about-container {
+    grid-template-columns: 1fr;  /* stack atas bawah */
+    text-align: center;
+  }
+  .about-shape {
+    display: none; /* sembunyikan bentuk merah */
+  }
+  .menu {
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+  .struktur-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom saja */
+  }
+}
+
+/* HP (max 600px) */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+  .menu a {
+    margin: 5px;
+    font-size: 14px;
+  }
+  section {
+    padding: 40px 20px; /* biar ga kepanjangan */
+  }
+  .about-text h1 {
+    font-size: 22px;
+  }
+  .about-text p {
+    font-size: 14px;
+  }
+  .visi-misi-container {
+    padding: 20px;
+  }
+  .struktur-grid {
+    grid-template-columns: 1fr; /* jadi 1 kolom di hp */
+  }
+  .gallery {
+    grid-template-columns: 1fr; /* galeri 1 kolom */
+  }
+  .contact-info, .contact-social {
+    font-size: 14px;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar Logo -->
+  <div class="navbar">
+    <div class="left">
+      <img src="asset/logo KSR.png" alt="Logo KSR" class="logo-ksr">
+      <div>
+        <h2 style="margin:0; font-size:18px;">KSR PMI UNIT</h2>
+        <h3 style="margin:0; font-size:16px;">POLNEP</h3>
+      </div>
+    </div>
+
+    <div class="right">
+      <img src="asset/logo PMI.jpg" alt="Logo PMI" class="logo-pmi">
+      <img src="asset/Logo Polnep.png" alt="Logo Polnep" class="logo-polnep">
+    </div>
+  </div>
+
+  <!-- Menu Navigasi -->
+  <div class="menu">
+    <a href="#home">Home</a>
+    <a href="#about">About KSR</a>
+    <a href="#visi-misi">Visi Misi</a>
+    <a href="#struktur">Struktur Kepengurusan</a>
+    <a href="#kegiatan">Dokumentasi Kegiatan</a>
+    <a href="#contact">Contact Person</a>
+  </div>
+
+  <!-- Section Home (Slideshow) -->
+  <section id="home">
+    <div class="slideshow-container">
+      <div class="slide fade">
+        <img src="asset/foto-1.jpg" alt="Kegiatan 1">
+      </div>
+      <div class="slide fade">
+        <img src="asset/foto-2.jpg" alt="Kegiatan 2">
+      </div>
+      <div class="slide fade">
+        <img src="asset/foto-3.jpg" alt="Kegiatan 3">
+      </div>
+    </div>
+  </section>
+
+  <script>
+  let homeIndex = 0;
+  showHomeSlides();
+
+  function showHomeSlides() {
+    let slides = document.getElementsByClassName("slide");
+    
+    // sembunyikan semua slide
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+    }
+    
+    homeIndex++;
+    if (homeIndex > slides.length) {homeIndex = 1} // reset ke awal
+    
+    slides[homeIndex-1].style.display = "block";  
+    setTimeout(showHomeSlides, 3000); // ganti gambar setiap 3 detik
+  }
+  </script>
+
+
+  <!-- Section About -->
+  <section id="about">
+  <div class="about-container">
+    <div class="about-shape"></div>
+    <div class="about-text">
+      <h1>ABOUT KSR PMI POLNEP</h1>
+      <p>
+        KSR (Korps Sukarela) resmi berdiri pada tahun 2014 sebagai salah satu unit kegiatan mahasiswa yang bergerak di bidang kemanusiaan & kesehatan.
+      </p>
+      <p>
+        KSR PMI Unit Politeknik Negeri Pontianak adalah unit kegiatan mahasiswa resmi yang menjadi bagian dari jaringan relawan PMI.
+      </p>
+      <p>
+        Kehadiran unit ini berawal dari kebutuhan mahasiswa POLNEP untuk memiliki wadah yang dapat menyalurkan jiwa kepedulian sosial, 
+        terutama dalam bidang pertolongan pertama, donor darah, dan kesiapsiagaan bencana.
+      </p>
+      <p>
+        Dengan semangat solidaritas dan kepedulian, KSR PMI Unit POLNEP terus berkembang hingga kini menjadi wadah mahasiswa yang 
+        tidak hanya melatih keterampilan dalam bidang kepalangmerahan, tetapi juga menumbuhkan rasa tanggung jawab sosial dan 
+        jiwa kemanusiaan di kalangan mahasiswa POLNEP.
+      </p>
+    </div>
+  </div>
+</section>
+
+  <!-- Section Visi Misi -->
+  <section id="visi-misi">
+  <div class="visi-misi-container">
+    <h1>VISI DAN MISI <br> KSR PMI POLNEP</h1>
+
+    <div class="visi">
+      <h2>Visi KSR PMI Unit Polnep</h2>
+      <p>
+        "Menjadi organisasi relawan yang profesional, berintegritas, dan berjiwa kemanusiaan, 
+        yang mampu mewujudkan pelayanan kepalangmerahan secara responsif, berkelanjutan, serta 
+        berlandaskan pada prinsip-prinsip dasar PMI dalam rangka menumbuhkan kepedulian, solidaritas, 
+        dan kebanggaan bagi setiap anggota maupun masyarakat luas."
+      </p>
+    </div>
+
+    <div class="misi">
+      <h2>Misi KSR PMI Unit Polnep</h2>
+      <ul>
+        <li>Meningkatkan kapasitas anggota KSR PMI Unit Polnep dalam bidang kepalangmerahan.</li>
+        <li>Mewujudkan kondisi anggota yang profesional serta memiliki jiwa kepalangmerahan dan rasa kekeluargaan.</li>
+        <li>Menumbuhkan rasa kecintaan dan kebanggaan terhadap organisasi.</li>
+        <li>Menjadi wadah pengembangan potensi relawan dalam mewujudkan pelayanan kemanusiaan yang responsif dan berlandaskan prinsip kepalangmerahan.</li>
+      </ul>
+    </div>
+  </div>
+  </section>
+
+  <!-- Section Struktur -->
+ <section id="struktur">
+  <!-- Sidebar Judul -->
+  <div class="struktur-header">
+    <h1>STRUKTUR<br>KEPENGURUSAN</h1>
+  </div>
+
+  <!-- Container Slideshow -->
+  <div class="struktur-container">
+    <!-- Slide 1 -->
+    <div class="struktur-slide fade">
+      <div class="struktur-grid">
+        <div class="card">
+          <img src="asset/komandan.png" alt="Komandan">
+        </div>
+        <div class="card">
+          <img src="asset/sekretaris.png" alt="Sekretaris">
+        </div>
+        <div class="card">
+          <img src="asset/bendahara.png" alt="Bendahara">
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="struktur-slide fade">
+      <div class="struktur-grid">
+        <div class="card">
+          <img src="asset/markas.png" alt="Markas">
+        </div>
+        <div class="card">
+          <img src="asset/bandiklat.png" alt="Bandiklat">
+        </div>
+        <div class="card">
+          <img src="asset/psdm.png" alt="PSDM">
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="struktur-slide fade">
+      <div class="struktur-grid">
+        <div class="card">
+          <img src="asset/p3m.png" alt="P3M">
+        </div>
+        <div class="card">
+          <img src="asset/huminfo.png" alt="Huminfo">
+        </div>
+      </div>
+    </div>
+
+    <!-- Tombol Navigasi -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </div>
+</section>
+
+<script>
+let strukturIndex = 1;
+showStrukturSlides(strukturIndex);
+
+function plusSlides(n) {
+  showStrukturSlides(strukturIndex += n);
+}
+
+function showStrukturSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("struktur-slide");
+  if (n > slides.length) {strukturIndex = 1}
+  if (n < 1) {strukturIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slides[strukturIndex-1].style.display = "block";
+}
+</script>
+
+  <!-- Section Kegiatan -->
+  <section id="kegiatan">
+  <h1>DOKUMENTASI KEGIATAN</h1>
+  <div class="gallery">
+    <div class="gallery-item">
+      <img src="asset/foto-3.jpg" alt="Kegiatan 1">
+      <p>PAB DIKLATSAR</p>
+    </div>
+    <div class="gallery-item">
+      <img src="asset/foto-2.jpg" alt="Kegiatan 2">
+      <p>Pelatihan Vertical Rescue bersama BASARNAS</p>
+    </div>
+    <div class="gallery-item">
+      <img src="asset/mustah.jpeg" alt="Kegiatan 3">
+      <p>Musyawarah Tahunan</p>
+    </div>
+    <div class="gallery-item">
+      <img src="asset/diklat-damkar.jpg" alt="Kegiatan 4">
+      <p>Diklat bersama DAMKAR</p>
+    </div>
+    <div class="gallery-item">
+      <img src="asset/donor darah.jpg" alt="Kegiatan 5">
+      <p>Donor Darah</p>
+    </div>
+    <div class="gallery-item">
+      <img src="asset/diklat rutin.jpg" alt="Kegiatan 6">
+      <p>Diklat Rutin</p>
+    </div>
+  </div>
+  </section>
+
+
+  <!-- Section Kontak -->
+  <section id="contact">
+  <div class="contact-container">
+    <h1>CONTACT PERSON</h1>
+
+    <div class="contact-info">
+      <p>
+        <img src="asset/icon-phone.png" alt="Phone" class="icon">
+        089674299616 (Cahya - Komandan)
+      </p>
+      <p>
+        <img src="asset/icon-phone.png" alt="Phone" class="icon">
+        08152113185 (Cindy - Huminfо)
+      </p>
+      <p>
+        <img src="asset/icon-email.png" alt="Email" class="icon">
+        ksrpmipolnep@gmail.com
+      </p>
+    </div>
+
+    <div class="contact-social">
+      <p>Kunjungi juga media sosial KSR PMI Unit Polnep di bawah ini:</p>
+      <p>
+        <img src="asset/icon-instagram.png" alt="Instagram" class="icon">
+        ksrpmipolnep
+      </p>
+      <p>
+        <img src="asset/icon-facebook.png" alt="Facebook" class="icon">
+        Korps Sukarela PMI Polnep
+      </p>
+      <p>
+        <img src="asset/icon-tiktok.png" alt="Tiktok" class="icon">
+        ksrpmipolnep
+      </p>
+    </div>
+  </div>
+</section>  
+</body>
+</html>
